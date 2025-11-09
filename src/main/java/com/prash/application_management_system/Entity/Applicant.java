@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -26,4 +29,7 @@ public class Applicant {
     // this means first resume will be added then applicant will be added in the database by the help of CasacadeType
     @OneToOne(mappedBy = "applicant", cascade = CascadeType.ALL)
     private Resume resume;
+
+    @OneToMany
+    private List<Application> applications = new ArrayList<>();
 }
