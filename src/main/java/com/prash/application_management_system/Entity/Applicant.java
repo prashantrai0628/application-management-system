@@ -1,9 +1,6 @@
 package com.prash.application_management_system.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,4 +21,9 @@ public class Applicant {
     private String phone;
 
     private String status;
+
+
+    // this means first resume will be added then applicant will be added in the database by the help of CasacadeType
+    @OneToOne(mappedBy = "applicant", cascade = CascadeType.ALL)
+    private Resume resume;
 }

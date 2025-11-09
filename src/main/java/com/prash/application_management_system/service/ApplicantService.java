@@ -1,6 +1,7 @@
 package com.prash.application_management_system.service;
 
 import com.prash.application_management_system.Entity.Applicant;
+import com.prash.application_management_system.Entity.Resume;
 import com.prash.application_management_system.repositories.ApplicantCrudRepository;
 import com.prash.application_management_system.repositories.ApplicantJpaRepository;
 import com.prash.application_management_system.repositories.ApplicantPagingAndSortingRepository;
@@ -28,6 +29,12 @@ public class ApplicantService {
         return applicantJpaRepository.findApplicantsByPartialName(name);
     }
     public Applicant saveApplicantCrud(Applicant applicant) {
+
+        // important logic OneToOne Mapping
+        Resume resume = applicant.getResume();
+        if(resume != null){
+            resume.setApplicant(applicant);
+        }
         return applicantCrudRepository.save(applicant);
     }
 
